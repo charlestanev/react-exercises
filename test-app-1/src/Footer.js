@@ -4,7 +4,7 @@ const Footer = () => {
     const today = new Date();
 
     return (
-        <footer>{today.getUTCFullYear()}{today.getFullYear()}</footer>
+        <footer>{today.getFullYear()}</footer>
     )
 }
 
