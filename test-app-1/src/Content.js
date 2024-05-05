@@ -27,24 +27,38 @@ const Content = () => {
         localStorage.setItem('shoppingList', JSON.stringify(listItems));
     }
 
+    const handleDelete = (id) => {
+        const listItems = items.filter((item) => item.id !== id);
+        setItems(listItems);
+        localStorage.setItem('shoppingList', JSON.stringify(listItems));
+    }
+
     return (
         <main>
-            <ul>
-                {items.map((item) => (
-                    <li className='item' key={item.id}>
-                        <input
-                            type='checkbox'
-                            onChange={() => handleCheck(item.id)}
-                            checked={item.checked}>
-                        </input>
-                        <label>{item.item}</label>
-                        <FaTrashAlt
-                            role='button'
-                            tabIndex="0"
-                        />
-                    </li>
-                ))}
-            </ul>
+            {items.length ? (
+                <ul>
+                    {items.map((item) => (
+                        <li className='item' key={item.id}>
+                            <input
+                                type='checkbox'
+                                onChange={() => handleCheck(item.id)}
+                                checked={item.checked}>
+                            </input>
+                            <label
+                            style={(item.checked) ? {textDecoration:'line-through'} : null}
+                            onDoubleClick={() => handleCheck(item.id)}
+                            >{item.item}</label>
+                            <FaTrashAlt
+                                onClick={() => handleDelete(item.id)}
+                                role='button'
+                                tabIndex="0"
+                            />
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p style={{marginTop: '2rem' }}>Your list is empty !</p>
+            )}
         </main>
     )
 }
