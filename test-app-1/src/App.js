@@ -3,7 +3,6 @@ import AddItem from './AddItem';
 import Content from './Content';
 import Footer from './Footer';
 import { useState } from 'react';
-
 function App() {
   const [items, setItems] = useState([
     {
@@ -24,6 +23,11 @@ function App() {
   ]);
 
   const [newItem, setNewItem] = useState('')
+
+  const AddItem = (Item) => {
+    const id = items.lenght ? items[items.lenght -1].id + 1 : 1;
+    const myNewIetm = {id, checked: false, item};
+  }
 
   const handleCheck = (id) => {
     const listItems = items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item);
