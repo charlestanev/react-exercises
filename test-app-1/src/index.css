@@ -5,16 +5,16 @@
 }
 
 html {
-  font-size: 22px;
+  font-size: 18px;
+  /* Adjusted for better scaling across devices */
 }
 
 body {
   min-height: 100vh;
-  font-family: 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f9;
+  /* Light background for contrast */
+  color: #333;
 }
 
 .App {
@@ -22,116 +22,148 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
-  width: 100%; 
-  max-width: 500px;
-  border: 1px solid mediumblue;
+  height: 100vh;
+  max-width: 600px;
   margin: auto;
+  background-color: #fff;
+  /* Clean white background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Soft shadow */
+  border-radius: 10px;
+  /* Rounded corners */
+  padding: 2rem;
 }
 
 header {
   width: 100%;
-  padding: 0 0.25em;
-  background-color: mediumblue;
-  color: aliceblue;
+  background-color: #007bff;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 10px 10px 0 0;
+}
+
+.addForm {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+  justify-content: center;
   align-items: center;
+
+  &>* {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.addForm input {
+  flex-grow: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+}
+
+.addForm button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addForm button:hover {
+  background-color: #218838;
 }
 
 main {
   width: 100%;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  justify-content: center;
-  justify-content: flex-start;
   align-items: center;
-  overflow-y: auto;
+}
+
+ul {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+ul li::before {
+  content: "\200B";
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.item input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.item input[type="checkbox"]:checked+label {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.item label {
+  flex-grow: 1;
+  font-size: 1rem;
+}
+
+.item svg {
+  cursor: pointer;
+  color: #dc3545;
+  transition: color 0.3s ease;
+}
+
+.item svg:hover {
+  color: #c82333;
 }
 
 footer {
   width: 100%;
-  padding: 0.25em;
-  background-color: mediumblue;
-  color: aliceblue;
-  display: grid;
-  place-content: center;
-}
-
-ul{
-  width: 100%;
-  list-style: none;
-  padding: 0 0.25rem 0.25rem;
-}
-
-ul li::before{
-  content: "\200B";
-}
-
-.item{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 0.5rem 0.5rem;
-  margin:  0.25rem 0;
-  background-color: #eee;
-}
-
-.item:first-child{
-  margin: 0;
-}
-
-.item input[type="checkbox"]{
   text-align: center;
-  width: 2.5rem;
-  width: 48px;
-  min-width: 48px;
-  height: 2.5rem;
-  height: 48px;
-  min-height: 48px;
-  cursor: pointer;
-  margin-right: 0.5rem;
-}
-
-.item input[type="checkbox"]:focus + label{
-  text-decoration: underline;
-}
-
-.item > label{
-  font-size: 0.75rem;
-  flex-grow: 1;
-}
-
-.item svg{
-  width: 48px;
-  min-height: 48px;
-  height: 36px;
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
   font-size: 1rem;
-  columns: steelblue;
-  cursor: pointer;
-}
-
-.item svg:focus,
-.item svg:hover{
-  color: red;
-  outline: none;
-}
-
-button{
-  height: 48px;
-  min-width: 48px;
-  border-radius: 0.25rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  background-color: aliceblue;
-  color: mediumblue;
-  cursor: pointer;
+  border-radius: 0 0 10px 10px;
 }
 
 button:focus,
-button:hover{
+button:hover {
+  background-color: #218838;
   color: white;
-  background-color: limegreen;
-  outline: none;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+
+  .App {
+    padding: 1.5rem;
+  }
+
+  .addForm input,
+  .addForm button {
+    padding: 0.5rem;
+  }
 }

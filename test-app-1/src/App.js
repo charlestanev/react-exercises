@@ -3,6 +3,7 @@ import AddItem from './AddItem';
 import Content from './Content';
 import Footer from './Footer';
 import { useState } from 'react';
+
 function App() {
   const [items, setItems] = useState([
     {
@@ -22,46 +23,49 @@ function App() {
     }
   ]);
 
-  const [newItem, setNewItem] = useState('')
+  const [newItem, setNewItem] = useState('');
 
-  const AddItem = (Item) => {
-    const id = items.lenght ? items[items.lenght -1].id + 1 : 1;
-    const myNewIetm = {id, checked: false, item};
-  }
+  const addItem = (item) => {
+    const id = items.length ? items[items.length - 1].id + 1 : 1;
+    const myNewItem = { id, checked: false, item };
+    const listItems = [...items, myNewItem];
+    setItems(listItems);
+    localStorage.setItem('shoppingList', JSON.stringify(listItems));
+  };
 
   const handleCheck = (id) => {
     const listItems = items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item);
     setItems(listItems);
     localStorage.setItem('shoppingList', JSON.stringify(listItems));
-  }
+  };
 
   const handleDelete = (id) => {
     const listItems = items.filter((item) => item.id !== id);
     setItems(listItems);
     localStorage.setItem('shoppingList', JSON.stringify(listItems));
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!newItem) return;
-    console.log(newItem);
+    if (!newItem) return;
+    addItem(newItem);
     setNewItem('');
-  }
+  };
 
   return (
     <div className="App">
-      <Header title="Grocerie list" />
+      <Header title="Grocery List" />
       <AddItem
         newItem={newItem}
         setNewItem={setNewItem}
         handleSubmit={handleSubmit}
-        />
+      />
       <Content
         items={items}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
       />
-      <Footer lenght={items.length} />
+      <Footer length={items.length} />
     </div>
   );
 }
