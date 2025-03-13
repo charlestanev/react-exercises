@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Header from './Header';
-import AddItem from './AddItem';
+import Header from './components/Header';
+import AddItem from './components/AddItem';
 import Content from './Content';
-import Footer from './Footer';
+import Footer from './components/Footer';
 import initialItems from './data';
 
 function App() {
