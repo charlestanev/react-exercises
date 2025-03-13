@@ -12,11 +12,24 @@ function App() {
   });
 
   const [newItem, setNewItem] = useState('');
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     document.title = "Grocery List";
     localStorage.setItem('shoppingList', JSON.stringify(items));
   }, [items]);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
+
+  const toggleTheme = () => setDarkMode(!darkMode);
 
   const addItem = (item) => {
     if (!item.trim()) return;
@@ -51,11 +64,13 @@ function App() {
   };
 
   return (
-    <div className="App min-h-screen flex flex-col items-center p-4 bg-gray-100">
-      <Header title="Grocery List" />
-      <AddItem newItem={newItem} setNewItem={setNewItem} handleSubmit={(e) => { e.preventDefault(); addItem(newItem); }} />
-      <Content items={items} handleCheck={handleCheck} handleDelete={handleDelete} handleEdit={handleEdit} />
-      <ClearList clearItems={clearItems} />
+    <div className="App min-h-screen flex flex-col items-center p-6 md:p-0 bg-gradient-to-b from-blue-200 to-blue-500 dark:from-gray-900 dark:to-gray-800 transition-all">
+      <Header title="Grocery List" darkMode={darkMode} toggleTheme={toggleTheme} />
+      <div className="w-full max-w-md bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6 mt-6 transition-all">
+        <AddItem newItem={newItem} setNewItem={setNewItem} handleSubmit={(e) => { e.preventDefault(); addItem(newItem); }} />
+        <Content items={items} handleCheck={handleCheck} handleDelete={handleDelete} handleEdit={handleEdit} />
+        <ClearList clearItems={clearItems} items={items} />
+      </div>
       <Footer length={items.length} />
     </div>
   );
