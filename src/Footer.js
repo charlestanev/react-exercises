@@ -1,9 +1,12 @@
 import React from 'react'
 
-const Footer = ({lenght}) => {
+const Footer = ({ lenght }) => {
+    console.log(lenght);
+
     return (
         <footer>
             <p>{lenght} List {lenght === 1 ? "Item" : "Items"}</p>
+
         </footer>
     )
 }

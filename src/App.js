@@ -3,26 +3,10 @@ import Header from './Header';
 import AddItem from './AddItem';
 import Content from './Content';
 import Footer from './Footer';
+import initialItems from './data';
 
 function App() {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      checked: true,
-      item: "Item 1"
-    },
-    {
-      id: 2,
-      checked: false,
-      item: "Item 2"
-    },
-    {
-      id: 3,
-      checked: false,
-      item: "Item 3"
-    }
-  ]);
-
+  const [items, setItems] = useState(initialItems);
   const [newItem, setNewItem] = useState('');
 
   useEffect(() => {
