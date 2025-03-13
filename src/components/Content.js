@@ -1,21 +1,26 @@
-import React from 'react'
-import ItemList from './ItemList'
+import React from 'react';
+import Item from './Item';
 
-const Content = ({ items, handleCheck, handleDelete }) => {
-
+const Content = ({ items, handleCheck, handleDelete, handleEdit }) => {
     return (
-        <main>
+        <main className="p-4">
             {items.length ? (
-                <ItemList
-                    items={items}
-                    handleCheck={handleCheck}
-                    handleDelete={handleDelete}
-                />
+                <ul>
+                    {items.map((item) => (
+                        <Item
+                            key={item.id}
+                            item={item}
+                            handleCheck={handleCheck}
+                            handleDelete={handleDelete}
+                            handleEdit={handleEdit}
+                        />
+                    ))}
+                </ul>
             ) : (
-                <p style={{ marginTop: '2rem' }}>Your list is empty !</p>
+                <p className="text-gray-500 text-center">No items in the list.</p>
             )}
         </main>
-    )
-}
+    );
+};
 
-export default Content
+export default Content;
